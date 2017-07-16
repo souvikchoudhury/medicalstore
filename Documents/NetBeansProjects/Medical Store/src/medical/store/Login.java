@@ -39,13 +39,41 @@ public class Login extends javax.swing.JFrame {
         pass = new javax.swing.JPasswordField();
         LoginButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setBackground(new java.awt.Color(153, 0, 153));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MEDICAL STORE");
 
+        user.setText("Employee ID");
+        user.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userFocusGained(evt);
+            }
+        });
+        user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userMouseClicked(evt);
+            }
+        });
+        user.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                userKeyPressed(evt);
+            }
+        });
+
+        pass.setText("Password");
+        pass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passFocusGained(evt);
+            }
+        });
+        pass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passMouseClicked(evt);
+            }
+        });
         pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passActionPerformed(evt);
@@ -120,16 +148,17 @@ public class Login extends javax.swing.JFrame {
         
         try{
         Connection con=DBConnection.getConnection();
-        PreparedStatement ps=con.prepareStatement("select * from auth where uid=? and upass=?");
+        PreparedStatement ps=con.prepareStatement("select * from empdetails where EmpID=? and Emppass=?");
         ps.setInt(1, username);
         ps.setString(2, password);
         ResultSet rs=ps.executeQuery();
         if(rs.next())
         {
-           String a=rs.getString(2);
-           String b=rs.getString(4);
+           String a=rs.getString(1);
+           String b=rs.getString(2);
+           String c=rs.getString(3);
            JOptionPane.showMessageDialog(rootPane, "SUCCESS \nLOGGED IN AS : "+a);
-           if("admin".equals(b))
+           if("admin".equals(c))
            {
            DashBoard uf=new DashBoard(a);
            this.dispose();
@@ -137,7 +166,7 @@ public class Login extends javax.swing.JFrame {
            }
            else
            {
-           DashBoard uf=new DashBoard(a, b);
+           DashBoard uf=new DashBoard(a, c);
            this.dispose();
            uf.setVisible(true);
            }
@@ -171,16 +200,17 @@ public class Login extends javax.swing.JFrame {
         
         try{
         Connection con=DBConnection.getConnection();
-        PreparedStatement ps=con.prepareStatement("select * from auth where uid=? and upass=?");
+        PreparedStatement ps=con.prepareStatement("select * from empdetails where EmpID=? and Emppass=?");
         ps.setInt(1, username);
         ps.setString(2, password);
         ResultSet rs=ps.executeQuery();
         if(rs.next())
         {
-           String a=rs.getString(2);
-           String b=rs.getString(4);
+           String a=rs.getString(1);
+           String b=rs.getString(2);
+           String c=rs.getString(3);
            JOptionPane.showMessageDialog(rootPane, "SUCCESS \nLOGGED IN AS : "+a);
-           if("admin".equals(b))
+           if("admin".equals(c))
            {
            DashBoard uf=new DashBoard(a);
            this.dispose();
@@ -188,7 +218,7 @@ public class Login extends javax.swing.JFrame {
            }
            else
            {
-           DashBoard uf=new DashBoard(a, b);
+           DashBoard uf=new DashBoard(a, c);
            this.dispose();
            uf.setVisible(true);
            }
@@ -206,6 +236,34 @@ public class Login extends javax.swing.JFrame {
         }
         }
     }//GEN-LAST:event_passKeyPressed
+
+    private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
+        // TODO add your handling code here:
+        //user.setText("");
+        //if(user.getText()=="")
+            //user.setText("");
+    }//GEN-LAST:event_userMouseClicked
+
+    private void passMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passMouseClicked
+        // TODO add your handling code here:
+        //pass.setText("");
+        //if(pass.getText()=="")
+             //pass.setText("");
+    }//GEN-LAST:event_passMouseClicked
+
+    private void userKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userKeyPressed
+
+    private void passFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passFocusGained
+        // TODO add your handling code here:
+        pass.setText("");
+    }//GEN-LAST:event_passFocusGained
+
+    private void userFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userFocusGained
+        // TODO add your handling code here:
+        user.setText("");
+    }//GEN-LAST:event_userFocusGained
 
     /**
      * @param args the command line arguments

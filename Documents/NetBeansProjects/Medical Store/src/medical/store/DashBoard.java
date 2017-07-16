@@ -5,6 +5,8 @@
  */
 package medical.store;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Souvik
@@ -14,18 +16,20 @@ public class DashBoard extends javax.swing.JFrame {
     /**
      * Creates new form DashBoard
      */
+    /* USER DASHBOARD*/
     public DashBoard(String cur,String type) {
         initComponents();
         cuButton.setEnabled(false);
         currentUser.setText("LOGGED IN AS : @"+cur);
     }
+    /* USER ADMIN*/
     public DashBoard(String cur)
     {
         initComponents();
         currentUser.setText("LOGGED IN AS : @"+cur);
     }
 
-    private DashBoard() {
+    DashBoard() {
         initComponents();
     }
 
@@ -44,9 +48,8 @@ public class DashBoard extends javax.swing.JFrame {
         searchButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
-        bullingButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         logoutButton.setText("LogOut");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,13 +86,6 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
 
-        bullingButton.setText("BILLING SYSTEM");
-        bullingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bullingButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,11 +104,8 @@ public class DashBoard extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(111, 111, 111)
-                                .addComponent(bullingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 440, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,9 +120,7 @@ public class DashBoard extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addComponent(searchButton)
                 .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateButton)
-                    .addComponent(bullingButton))
+                .addComponent(updateButton)
                 .addGap(51, 51, 51)
                 .addComponent(addButton)
                 .addContainerGap(60, Short.MAX_VALUE))
@@ -140,11 +131,14 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "LOGGED OUT SUCCESSFULLY");
         this.dispose();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void cuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuButtonActionPerformed
         // TODO add your handling code here:
+        SignUp su = new SignUp();
+        su.setVisible(true);
     }//GEN-LAST:event_cuButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
@@ -155,21 +149,15 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-        this.dispose();
         EditStockForm ef = new EditStockForm();
         ef.setVisible(true);
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
-        this.dispose();
         UpdateForm uf = new UpdateForm();
         uf.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
-
-    private void bullingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bullingButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bullingButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,7 +197,6 @@ public class DashBoard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JButton bullingButton;
     private javax.swing.JToggleButton cuButton;
     private javax.swing.JLabel currentUser;
     private javax.swing.JButton logoutButton;
